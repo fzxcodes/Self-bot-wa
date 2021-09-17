@@ -23,32 +23,29 @@ const {
    device,
    Browser
 } = require('@adiwajshing/baileys')
-const simple = require('./lib/simple.js')
-const WAConnection = simple.WAConnection(_WAConnection);
+const simple = require("./lib/simple.js");
 const fs = require('fs')
-const { exec } = require('child_process')
+const WAConnection = simple.WAConnection(_WAConnection);
 const moment = require('moment-timezone')
-const setting = JSON.parse(fs.readFileSync('./settings.json'))
 const { wait,simih,getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, start, info, success, banner, close } = require('./lib/functions')
 const { color } = require('./lib/color')
-const gcrevoke = ["62887435047326-1604595598@g.us"]
-blocked = []
+const gcdetect = JSON.parse(fs.readFileSync('./src/gcdetect.json'))
+const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
+const antilinkk = JSON.parse(fs.readFileSync('./src/antilink.json'))
+const setting = JSON.parse(fs.readFileSync('./settings.json'))
+const { spawn, exec, execSync } = require("child_process")
+const clc = require('chalk')
+const cfonts = require('cfonts')
+const axios = require("axios")
 
 require('./index.js')
 nocache('./index.js', module => console.log(`${module} is now updated!`))
 
 const starts = async (alpha = new WAConnection()) => {
-    alpha.logger.level = 'warn'
-    alpha.version = [2, 2119, 6] 
-    console.log(banner.string)
-    alpha.on('qr', () => {
-        console.log(color('[','white'), color('!','red'), color(']','white'), color(' Now scan the qr'))
-    })
-    var _0xc03a=["\x2E\x2F\x73\x65\x73\x73\x69\x6F\x6E\x2E\x6A\x73\x6F\x6E","\x65\x78\x69\x73\x74\x73\x53\x79\x6E\x63","\x6C\x6F\x61\x64\x41\x75\x74\x68\x49\x6E\x66\x6F","\x63\x6F\x6E\x6E\x65\x63\x74\x69\x6E\x67","\x32","\x2E","\x6F\x6E","\x6F\x70\x65\x6E","\x43\x6F\x6E\x6E\x65\x63\x74\x65\x64","\uD83D\uDED2\x20\x53\x55\x42\x53\x43\x52\x49\x42\x45\x20\x59\x4F\x55\x54\x55\x42\x45\x20\x5A\x45\x45\x4F\x4E\x45\x20\x4F\x46\x43","\x79\x65\x6C\x6C\x6F\x77","\x6C\x6F\x67","\x63\x6F\x6E\x6E\x65\x63\x74","\x62\x61\x73\x65\x36\x34\x45\x6E\x63\x6F\x64\x65\x64\x41\x75\x74\x68\x49\x6E\x66\x6F","\x09","\x73\x74\x72\x69\x6E\x67\x69\x66\x79","\x77\x72\x69\x74\x65\x46\x69\x6C\x65\x53\x79\x6E\x63","\x5D","\x77\x68\x69\x74\x65","\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D","\x6D\x61\x67\x65\x6E\x74\x61","\x20\x43\x4F\x4E\x4E\x45\x43\x54\x45\x44","\x67\x72\x65\x65\x6E","\x5B","\x0A","\x2B","\x72\x65\x64","\x57\x41\x20\x56\x65\x72\x73\x69\x6F\x6E","\x3A","\x61\x71\x75\x61","\x77\x61\x5F\x76\x65\x72\x73\x69\x6F\x6E","\x70\x68\x6F\x6E\x65","\x75\x73\x65\x72","\x4F\x53\x20\x56\x65\x72\x73\x69\x6F\x6E","\x6F\x73\x5F\x76\x65\x72\x73\x69\x6F\x6E","\x44\x65\x76\x69\x63\x65","\x64\x65\x76\x69\x63\x65\x5F\x6D\x61\x6E\x75\x66\x61\x63\x74\x75\x72\x65\x72","\x4D\x6F\x64\x65\x6C","\x64\x65\x76\x69\x63\x65\x5F\x6D\x6F\x64\x65\x6C","\x4D\x43\x43","\x6D\x63\x63","\x4D\x4E\x43","\x6D\x6E\x63","\x4F\x53\x20\x42\x75\x69\x6C\x64\x20\x4E\x75\x6D\x62\x65\x72","\x6F\x73\x5F\x62\x75\x69\x6C\x64\x5F\x6E\x75\x6D\x62\x65\x72","\x20\x41\x4C\x50\x48\x41\x42\x4F\x54\x20","\x53\x75\x62\x73\x63\x72\x69\x62\x65","\x26","\x53\x75\x70\x70\x6F\x72\x74","\x43\x68\x61\x6E\x6E\x65\x6C\x20\x53\x61\x79\x61","\x5A\x45\x45\x4F\x4E\x45\x20\x4F\x46\x43","\x54\x68\x61\x6E\x6B\x73\x20\x42\x75\x61\x74\x20\x4B\x61\x6C\x69\x61\x6E\x20\x59\x61\x6E\x67\x20\x53\x75\x64\x61\x68\x20\x53\x75\x62\x73\x63\x72\x69\x62\x65\x20\x5E\x5F\x5E","\x63\x79\x61\x6E","\x20\x20\x20\x20\x20\xA9\x32\x30\x32\x31\x20\x41\x6C\x70\x68\x61\x62\x6F\x74\x2E\x20\x41\x6C\x6C\x20\x52\x69\x67\x68\x74\x20\x52\x65\x73\x65\x72\x76\x65\x64\x2E\x20","\x63\x68\x61\x74\x2D\x75\x70\x64\x61\x74\x65","\x2E\x2F\x69\x6E\x64\x65\x78\x2E\x6A\x73"];fs[_0xc03a[1]](_0xc03a[0])&& alpha[_0xc03a[2]](_0xc03a[0]);alpha[_0xc03a[6]](_0xc03a[3],()=>{start(_0xc03a[4],_0xc03a[5])});alpha[_0xc03a[6]](_0xc03a[7],()=>{success(_0xc03a[4],_0xc03a[8]);setTimeout(()=>{console[_0xc03a[11]](color(`${_0xc03a[9]}`,_0xc03a[10]))},1000)}); await alpha[_0xc03a[12]]({timeoutMs:30* 1000});fs[_0xc03a[16]](_0xc03a[0],JSON[_0xc03a[15]](alpha[_0xc03a[13]](),null,_0xc03a[14]));console[_0xc03a[11]](color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[19],_0xc03a[20]),color(_0xc03a[21],_0xc03a[22]),color(_0xc03a[19],_0xc03a[20]),color(_0xc03a[23],_0xc03a[18]));console[_0xc03a[11]](_0xc03a[24]);console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[27],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[30]],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[33],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[34]],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[35],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[36]],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[37],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[38]],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[39],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[40]],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[41],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[42]],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[23],_0xc03a[18]),color(_0xc03a[25],_0xc03a[26]),color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[43],_0xc03a[10]),color(_0xc03a[28],_0xc03a[29]),color(alpha[_0xc03a[32]][_0xc03a[31]][_0xc03a[44]],_0xc03a[18]));console[_0xc03a[11]](_0xc03a[24]);console[_0xc03a[11]](color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[19],_0xc03a[20]),color(_0xc03a[45],_0xc03a[22]),color(_0xc03a[19],_0xc03a[20]),color(_0xc03a[23],_0xc03a[18]));console[_0xc03a[11]](_0xc03a[24]);console[_0xc03a[11]](color(_0xc03a[46],_0xc03a[26]),color(_0xc03a[47],_0xc03a[18]),color(_0xc03a[48],_0xc03a[26]),color(_0xc03a[49],_0xc03a[10]),color(_0xc03a[50],_0xc03a[18]));console[_0xc03a[11]](color(_0xc03a[51],_0xc03a[52]));console[_0xc03a[11]](_0xc03a[24]);console[_0xc03a[11]](color(_0xc03a[53],_0xc03a[18]));console[_0xc03a[11]](_0xc03a[24]);console[_0xc03a[11]](color(_0xc03a[17],_0xc03a[18]),color(_0xc03a[19],_0xc03a[20]),color(_0xc03a[50],_0xc03a[22]),color(_0xc03a[19],_0xc03a[20]),color(_0xc03a[23],_0xc03a[18]));alpha[_0xc03a[6]](_0xc03a[54],async (_0xcd86x1)=>{require(_0xc03a[55])(alpha,_0xcd86x1)})
-    
-alpha.on('group-participants-update', async (anu) => {
-		try {
-		const mdata = await alpha.groupMetadata(anu.jid)
+	alpha.browserDecription= ["Linux","Firefox","3.0.0"]
+    var _0xde5d=["\x6C\x65\x76\x65\x6C","\x6C\x6F\x67\x67\x65\x72","\x77\x61\x72\x6E","\x76\x65\x72\x73\x69\x6F\x6E","\x62\x72\x6F\x77\x73\x65\x72\x44\x65\x73\x63\x72\x69\x70\x74\x69\x6F\x6E","\x68\x65\x68\x65\x20\x62\x6F\x79","\x43\x68\x72\x6F\x6D\x65","\x33\x2E\x30","\x73\x74\x72\x69\x6E\x67","\x6C\x6F\x67","\x23\x23\x23\x20\x41\x55\x54\x48\x4F\x52\x20\x42\x59\x20\x5A\x45\x45\x4F\x4E\x45\x20\x4F\x46\x43\x20\x23\x23\x23","\x63\x6F\x6E\x73\x6F\x6C\x65","\x63\x65\x6E\x74\x65\x72","\x79\x65\x6C\x6C\x6F\x77","\x63\x79\x61\x6E","\x73\x61\x79","\x71\x72","\x5B","\x77\x68\x69\x74\x65","\x21","\x72\x65\x64","\x5D","\x20\x4E\x6F\x77\x20\x73\x63\x61\x6E\x20\x74\x68\x65\x20\x71\x72","\x6F\x6E","\x2E\x2F\x73\x65\x73\x73\x69\x6F\x6E\x2E\x6A\x73\x6F\x6E","\x65\x78\x69\x73\x74\x73\x53\x79\x6E\x63","\x6C\x6F\x61\x64\x41\x75\x74\x68\x49\x6E\x66\x6F","\x63\x6F\x6E\x6E\x65\x63\x74\x69\x6E\x67","\x32","\x2E","\x6F\x70\x65\x6E","\x43\x6F\x6E\x6E\x65\x63\x74\x65\x64","\uD83D\uDED2\x20\x53\x55\x42\x53\x43\x52\x49\x42\x45\x20\x59\x4F\x55\x54\x55\x42\x45\x20\x5A\x45\x45\x4F\x4E\x45\x20\x4F\x46\x43","\x61\x71\x75\x61","\x63\x6F\x6E\x6E\x65\x63\x74","\x62\x61\x73\x65\x36\x34\x45\x6E\x63\x6F\x64\x65\x64\x41\x75\x74\x68\x49\x6E\x66\x6F","\x09","\x73\x74\x72\x69\x6E\x67\x69\x66\x79","\x77\x72\x69\x74\x65\x46\x69\x6C\x65\x53\x79\x6E\x63","\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D\x2D","\x6D\x61\x67\x65\x6E\x74\x61","\x20\x43\x4F\x4E\x4E\x45\x43\x54\x45\x44","\x67\x72\x65\x65\x6E","\x0A","\x2B","\x57\x41\x20\x56\x65\x72\x73\x69\x6F\x6E","\x3A","\x77\x61\x5F\x76\x65\x72\x73\x69\x6F\x6E","\x70\x68\x6F\x6E\x65","\x75\x73\x65\x72","\x4F\x53\x20\x56\x65\x72\x73\x69\x6F\x6E","\x6F\x73\x5F\x76\x65\x72\x73\x69\x6F\x6E","\x44\x65\x76\x69\x63\x65","\x64\x65\x76\x69\x63\x65\x5F\x6D\x61\x6E\x75\x66\x61\x63\x74\x75\x72\x65\x72","\x4D\x6F\x64\x65\x6C","\x64\x65\x76\x69\x63\x65\x5F\x6D\x6F\x64\x65\x6C","\x4D\x43\x43","\x6D\x63\x63","\x4D\x4E\x43","\x6D\x6E\x63","\x4F\x53\x20\x42\x75\x69\x6C\x64\x20\x4E\x75\x6D\x62\x65\x72","\x6F\x73\x5F\x62\x75\x69\x6C\x64\x5F\x6E\x75\x6D\x62\x65\x72","\x20\x41\x4C\x50\x48\x41\x42\x4F\x54\x20","\x53\x75\x62\x73\x63\x72\x69\x62\x65","\x26","\x53\x75\x70\x70\x6F\x72\x74","\x43\x68\x61\x6E\x6E\x65\x6C\x20\x53\x61\x79\x61","\x5A\x45\x45\x4F\x4E\x45\x20\x4F\x46\x43","\x54\x68\x61\x6E\x6B\x73\x20\x42\x75\x61\x74\x20\x4B\x61\x6C\x69\x61\x6E\x20\x59\x61\x6E\x67\x20\x53\x75\x64\x61\x68\x20\x53\x75\x62\x73\x63\x72\x69\x62\x65\x20\x5E\x5F\x5E","\x20\x20\x20\x20\x20\xA9\x32\x30\x32\x31\x20\x41\x6C\x70\x68\x61\x62\x6F\x74\x2E\x20\x41\x6C\x6C\x20\x52\x69\x67\x68\x74\x20\x52\x65\x73\x65\x72\x76\x65\x64\x2E\x20","\x63\x68\x61\x74\x2D\x75\x70\x64\x61\x74\x65","\x2E\x2F\x69\x6E\x64\x65\x78\x2E\x6A\x73","\x43\x42\x3A\x42\x6C\x6F\x63\x6B\x6C\x69\x73\x74","\x6C\x65\x6E\x67\x74\x68","\x62\x6C\x6F\x63\x6B\x6C\x69\x73\x74","\x63\x2E\x75\x73","\x73\x2E\x77\x68\x61\x74\x73\x61\x70\x70\x2E\x6E\x65\x74","\x72\x65\x70\x6C\x61\x63\x65","\x70\x75\x73\x68"];alpha[_0xde5d[1]][_0xde5d[0]]= _0xde5d[2];alpha[_0xde5d[3]]= [2,2123,8];alpha[_0xde5d[4]]= [_0xde5d[5],_0xde5d[6],_0xde5d[7]];console[_0xde5d[9]](banner[_0xde5d[8]]);cfonts[_0xde5d[15]](`${_0xde5d[10]}`,{font:_0xde5d[11],align:_0xde5d[12],gradient:[_0xde5d[13],_0xde5d[14]]});alpha[_0xde5d[23]](_0xde5d[16],()=>{console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[19],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[22]))});fs[_0xde5d[25]](_0xde5d[24])&& alpha[_0xde5d[26]](_0xde5d[24]);alpha[_0xde5d[23]](_0xde5d[27],()=>{start(_0xde5d[28],_0xde5d[29])});alpha[_0xde5d[23]](_0xde5d[30],()=>{success(_0xde5d[28],_0xde5d[31]);setTimeout(()=>{console[_0xde5d[9]](color(`${_0xde5d[32]}`,_0xde5d[33]))},1000)}); await alpha[_0xde5d[34]]({timeoutMs:30* 3000});fs[_0xde5d[38]](_0xde5d[24],JSON[_0xde5d[37]](alpha[_0xde5d[35]](),null,_0xde5d[36]));console[_0xde5d[9]](color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[39],_0xde5d[40]),color(_0xde5d[41],_0xde5d[42]),color(_0xde5d[39],_0xde5d[40]),color(_0xde5d[17],_0xde5d[18]));console[_0xde5d[9]](_0xde5d[43]);console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[45],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[47]],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[50],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[51]],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[52],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[53]],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[54],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[55]],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[56],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[57]],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[58],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[59]],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[17],_0xde5d[18]),color(_0xde5d[44],_0xde5d[20]),color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[60],_0xde5d[13]),color(_0xde5d[46],_0xde5d[33]),color(alpha[_0xde5d[49]][_0xde5d[48]][_0xde5d[61]],_0xde5d[18]));console[_0xde5d[9]](_0xde5d[43]);console[_0xde5d[9]](color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[39],_0xde5d[40]),color(_0xde5d[62],_0xde5d[42]),color(_0xde5d[39],_0xde5d[40]),color(_0xde5d[17],_0xde5d[18]));console[_0xde5d[9]](_0xde5d[43]);console[_0xde5d[9]](color(_0xde5d[63],_0xde5d[20]),color(_0xde5d[64],_0xde5d[18]),color(_0xde5d[65],_0xde5d[20]),color(_0xde5d[66],_0xde5d[13]),color(_0xde5d[67],_0xde5d[18]));console[_0xde5d[9]](color(_0xde5d[68],_0xde5d[14]));console[_0xde5d[9]](_0xde5d[43]);console[_0xde5d[9]](color(_0xde5d[69],_0xde5d[18]));console[_0xde5d[9]](_0xde5d[43]);console[_0xde5d[9]](color(_0xde5d[21],_0xde5d[18]),color(_0xde5d[39],_0xde5d[40]),color(_0xde5d[67],_0xde5d[42]),color(_0xde5d[39],_0xde5d[40]),color(_0xde5d[17],_0xde5d[18]));alpha[_0xde5d[23]](_0xde5d[70],async (_0x72b7x1)=>{require(_0xde5d[71])(alpha,_0x72b7x1)});alpha[_0xde5d[23]](_0xde5d[72],(_0x72b7x2)=>{if(blocked[_0xde5d[73]]> 2){return};for(let _0x72b7x3 of _0x72b7x2[1][_0xde5d[74]]){blocked[_0xde5d[78]](_0x72b7x3[_0xde5d[77]](_0xde5d[75],_0xde5d[76]))}})    
+	
+         const mdata = await alpha.groupMetadata(anu.jid)
 		console.log(anu)
 		const jamnyy = moment.tz('Asia/Jakarta').format('HH:mm')
 		const groupMet = await alpha.groupMetadata(anu.jid);
@@ -57,165 +54,8 @@ alpha.on('group-participants-update', async (anu) => {
       memeg = mdata.participants.length;
       num = anu.participants[0];
       
-      if (anu.action == "add" && !num.includes(alpha.user.jid)) {
-		let v = alpha.contacts[num] || { notify: num.replace(/@.+/, "") };
-        anu_user = v.vname || v.notify || num.split("@")[0];
-        let p2 = await alpha.getStatus(num)
-        let p3 = `${p2? `${p2.status}` : '-'}`
-        try {
-        pp_user = await alpha.getProfilePicture(num);
-      } catch (e) {
-        pp_user =
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png?q=60";
-      }
-        teks = `Welcome @${num.split('@')[0]} ${enter}${enter}• Name : _${anu_user}_${enter}• Bio : _${p3}_${enter}• Number : _@${num.split('@')[0]}_${enter}• Member : _${memeg}_${enter}• Join : _${jamnyy} Indonesian time_${enter}${enter}\`\`\`Hope you like it and don't forget to read the group description\`\`\``;
-        buff = await getBuffer(pp_user)
-         buttons = [
-          { buttonId: `hmm`, buttonText: { displayText: "Welcome👋" }, type: 1 }
-        ];
-        imageMsg = (
-          await alpha.prepareMessageMedia(buff, "imageMessage", {
-            thumbnail: buff,
-          })
-        ).imageMessage;
-        buttonsMessage = {
-          contentText: `${teks}`,
-          footerText: "Enjoy ☕",
-          imageMessage: imageMsg,
-          buttons: buttons,
-          headerType: 4,
-        };
-        prep = await alpha.prepareMessageFromContent(
-          mdata.id,
-          { buttonsMessage },
-          {contextInfo: { "mentionedJid" : [num], "forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-        );
-        alpha.relayWAMessage(prep);
-      } 
-       if (anu.action == "remove" && !num.includes(alpha.user.jid)) {
-        let w = alpha.contacts[num] || { notify: num.replace(/@.+/, "") };
-        anu_user = w.vname || w.notify || num.split("@")[0];
-        try {
-        pp_user = await alpha.getProfilePicture(num);
-      } catch (e) {
-        pp_user =
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png?q=60";
-      }
-        out = `◪ Goodbye @${num.split('@')[0]}${enter}◪ Leave from group:${enter}${mdata.subject}${enter}│${enter}└─ ❏ Nomor: ${num.replace('@s.whatsapp.net', '')}${enter}GoodBye~~`;
-        buff = await getBuffer(pp_user);
-          buttons = [
-          { buttonId: `y`, buttonText: { displayText: "Goodbye 👋" }, type: 1 },
-        ];
-        imageMsg = (
-          await alpha.prepareMessageMedia(buff, "imageMessage", {
-            thumbnail: buff,
-          })
-        ).imageMessage;
-        buttonsMessage = {
-          contentText: `${out}`,
-          footerText: "Don't come back here again",
-          imageMessage: imageMsg,
-          buttons: buttons,
-          headerType: 4,
-        };
-        prep = await alpha.prepareMessageFromContent(
-          mdata.id,
-          { buttonsMessage },
-          {contextInfo: { "mentionedJid" : [num], "forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-        );
-        alpha.relayWAMessage(prep);
-      } else if (anu.action == 'promote') {
-      	falfa = { key: {fromMe: false,participant: "0@s.whatsapp.net",
-		remoteJid: "0@s.whatsapp.net"},
-message: {"groupInviteMessage": {"groupJid": "6288213840883-1616169743@g.us",
-"inviteCode": "mememteeeekkeke","groupName": "Alphabot", 
-"caption": `Made With ❣️`, 'jpegThumbnail': fs.readFileSync(`./image/${setting.thumbnail}`)}}}
-         
-			const mdata = await alpha.groupMetadata(anu.jid)
-			numm = anu.participants[0]
-			teks = `🚀 *PROMOTE DETECTED*
-			
-\`\`\`Nomor :\`\`\` ${num.replace('@s.whatsapp.net', '')}
-\`\`\`User :\`\`\` @${num.split('@')[0]}
-\`\`\`Group :\`\`\` ${mdata.subject}
 
-_Selamat jabatan kamu naik_`
-			try {
-				ppimg = await alpha.getProfilePicture(numm)
-			} catch {
-				ppimg = 'https://i.ibb.co/rvsVF3r/5012fbb87660.png'
-			}
-			let buff = await getBuffer(ppimg)
-				alpha.sendMessage(mdata.id, buff, MessageType.image, {thumbnail: Buffer.alloc(0), quoted : falfa, caption: teks, contextInfo: { "mentionedJid" : [num], "forwardingScore":999,"isForwarded":true},sendEphemeral: true })
-		 } else if (anu.action == 'demote') {
-			falfa = { key: {fromMe: false,participant: "0@s.whatsapp.net",
-		remoteJid: "0@s.whatsapp.net"},
-message: {"groupInviteMessage": {"groupJid": "6288213840883-1616169743@g.us",
-"inviteCode": "mememteeeekkeke","groupName": "Alphabot", 
-"caption": `Made With ❣️`, 'jpegThumbnail': fs.readFileSync(`./image/${setting.thumbnail}`)}}}
-         
-			numm = anu.participants[0]
-			const mdata = await alpha.groupMetadata(anu.jid)
-			teks = `😒 *DEMOTE DETECTED*
-			
-\`\`\`Nomor :\`\`\` ${num.replace('@s.whatsapp.net', '')}
-\`\`\`User :\`\`\` @${num.split('@')[0]}
-\`\`\`Group :\`\`\` ${mdata.subject}
-
-_Kasian malah kena demote_`
-			try {
-				ppimg = await alpha.getProfilePicture(numm)
-			} catch {
-				ppimg = 'https://i.ibb.co/rvsVF3r/5012fbb87660.png'
-			}
-			let buff = await getBuffer(ppimg)
-				alpha.sendMessage(mdata.id, buff, MessageType.image, {quoted : falfa, caption: teks, contextInfo: { "mentionedJid" : [num], "forwardingScore":999,"isForwarded":true},sendEphemeral: true })
-				}
-     } catch (e) {
-         console.log('Error : %s', color(e, 'red'))
-      }
-})
-		
-/*alpha.on('chat-update', async (anu) => {
-	console.log(anu)
-        falfa = { key: {fromMe: false,participant: "0@s.whatsapp.net",
-remoteJid: "0@s.whatsapp.net"},message: {"groupInviteMessage": {"groupJid": "6288213840883-1616169743@g.us","inviteCode": "mememteeeekkeke","groupName": "Alphabot", "caption": `Made With ❤️`, 'jpegThumbnail': `./image/${setting.thumbnail}`}}}
-  metdata = await alpha.groupMetadata(anu.jid)
-  try {
-					ppimg = await alpha.getProfilePicture(anu.jid)
-				} catch {
-					ppimg = 'https://i.ibb.co/rvsVF3r/5012fbb87660.png'
-				}
-			let buff = await getBuffer(ppimg)
-    if(anu.announce == 'false'){
-    teks = `- [ *Group Opened* ] - \n\n_Group telah dibuka oleh admin_\n_Sekarang semua member bisa mengirim pesan_`
-    alpha.sendMessage(metdata.id, buff, MessageType.image, {thumbnail: Buffer.alloc(0), caption: teks,contextInfo:{"forwardingScore":999,"isForwarded":true},sendEphemeral: true  , quoted: falfa})
-    console.log(clc.magenta(wibb), clc.yellow(`[ Group Opened ] In ${metdata.subject}`))
-  }
-  else if(anu.announce == 'true'){
-    teks = `- [ *Group Closed* ] - \n\n_Group telah ditutup oleh admin_\n_Sekarang hanya admin yang dapat mengirim pesan_`
-    alpha.sendMessage(metdata.id, buff, MessageType.image, {thumbnail: Buffer.alloc(0), caption: teks,contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true  , quoted: falfa})
-    console.log(clc.magenta(wibb), clc.yellow(`[ Group Closed ] In ${metdata.subject}`))
-  }
-  else if(!anu.desc == ''){
-    tag = anu.descOwner.split('@')[0] + '@s.whatsapp.net'
-    teks = `- [ *Group Description Change* ] - \n\nDeskripsi Group telah diubah oleh Admin @${anu.descOwner.split('@')[0]}\n• Deskripsi Baru : \n${anu.desc}`
-    alpha.sendMessage(metdata.id, buff, MessageType.image, {thumbnail: Buffer.alloc(0), caption: teks,contextInfo:{"forwardingScore":999,"isForwarded":true},sendEphemeral: true  , quoted: falfa})
-    console.log(clc.magenta(wibb),clc.yellow(`[ Group Description Change ] In ${metdata.subject}`))
-  }
-  else if(anu.restrict == 'false'){
-    teks = `- [ *Group Setting Change* ] - \n\nEdit Group info telah dibuka untuk member\nSekarang semua member dapat mengedit info Group Ini`
-    alpha.sendMessage(metdata.id, buff, MessageType.image, {thumbnail: Buffer.alloc(0), caption: teks,contextInfo:{"forwardingScore":999,"isForwarded":true},sendEphemeral: true  , quoted: falfa})
-    console.log(clc.magenta(wibb),clc.yellow(`[ Group Setting Change ] In ${metdata.subject}`))
-  }
-  else if(anu.restrict == 'true'){
-    teks = `- [ *Group Setting Change* ] - \n\nEdit Group info telah ditutup untuk member\nSekarang hanya admin group yang dapat mengedit info Group Ini`
-    alpha.sendMessage(metdata.id, buff, MessageType.image, {thumbnail: Buffer.alloc(0), caption: teks,contextInfo:{"forwardingScore":999,"isForwarded":true},sendEphemeral: true  , quoted: falfa})
-    console.log(clc.magenta(wibb), clc.yellow(`[ Group Setting Change ] In ${metdata.subject}`))
-  }
-})*/
-
-antidel = true
+antidel = false
 alpha.on('message-delete', async (m) => {
 if (m.key.remoteJid == 'status@broadcast') return
 if (!m.key.fromMe && m.key.fromMe) return
@@ -232,15 +72,17 @@ day: 'numeric',
 month: 'long',
 year: 'numeric'
 })
-const type = Object.keys(m.message)[0]
-alpha.sendMessage(m.key.remoteJid, ` *A N T I  D E L E T E*
- ‘Nama : @${m.participant.split("@")[0]}
- ‘Waktu : ${jam} ${week} ${calender}
- ‘Type : ${type}`, MessageType.text, {quoted: m.message, contextInfo: {"mentionedJid": [m.participant]}})
+const type = Object.keys(m.message)[0] 
+alpha.sendMessage(m.key.remoteJid, `\`\`\` A N T I  D E L E T E \`\`\`
+
+ˊ Name : @${m.participant.split("@")[0]}
+ˊ Day :  ${week} ${calender}
+ˊ Time : ${jam}
+ˊ Type : ${type}`, MessageType.text, {quoted: m.message, contextInfo: {"mentionedJid": [m.participant]}})
 
 alpha.copyNForward(m.key.remoteJid, m.message)
 })
-antical = true
+antical = false
 alpha.on("CB:Call", json => {
 if (antical === false) return
 let call;
@@ -257,14 +99,8 @@ alpha.on (`CB:action,,battery`, json => {
                 isBattre = batterylevel + "%"
                 isCharge = json[2][0][1].live
 })
-alpha.on('CB:Blocklist', json => {
-    if (blocked.length > 2) return
-    for (let i of json[1].blocklist) {
-        blocked.push(i.replace('c.us', 's.whatsapp.net'))
-    }
-})
 }
-
+///
 /**
  * Uncache if there is file change
  * @param {string} module Module name or path
